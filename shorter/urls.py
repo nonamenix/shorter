@@ -16,7 +16,13 @@ urlpatterns = patterns('',
     url(r'^success/(?P<slug>.*)$', DetailView.as_view(slug_field="short_urn",
         model=Short, context_object_name="short"), name='success'),
 
+    url(r'^top10.html$', ListView.as_view(
+        queryset=Short.objects.order_by('-conversions')[0:10],
+        template_name='core/top10.html',
+        context_object_name="shorts"), name="top10"),
+
     url(r'^$', ListView.as_view(model=Short, context_object_name="shorts", paginate_by=10)),
+
 
     url(r'^(?P<short_urn>.*)$', ShortRedirectView.as_view(), name='go'),
 

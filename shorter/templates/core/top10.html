@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+<!-- Feed Entry -->
+
+<!-- End Feed Entry -->
+
+{% block content %}
+
+    <h3>ТОП 10</h3>
+
+    {% if shorts|length > 0 %}
+        <table>
+            <thead>
+                <tr>
+                    <th width="20">#</th>
+                    <th>Переходов</th>
+                    <th>Время создания</th>
+                    <th width="150">Шорта</th>
+                    <th width="150">Ссылка</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for short in shorts %}
+                <tr>
+                    <td>{{ forloop.counter }}</td>
+                    <td>{{ short.conversions }}</td>
+                    <td> {{ short.created_at }}</td>
+                    <td> {{ short.short_urn }}</td>
+                    <td><a href="{% url "go" short.short_urn %}">{{ short.full_uri }}</a></td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+
+    {% else %}
+        В базе нет записей
+    {% endif %}
+{% endblock %}
