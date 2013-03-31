@@ -5,7 +5,13 @@
 <!-- End Feed Entry -->
 
 {% block content %}
+    {% if is_paginated %}
+        <div class="right">
+        {% paginate %}
+        </div>
+    {% endif %}
     <h3>Новинки</h3>
+
     {% if shorts|length > 0 %}
         {% for short in shorts %}
             <div class="row">
@@ -33,9 +39,11 @@
 
 
 
-        {% if is_paginated %}
-            {% paginate %}
-        {% endif %}
+            {% if is_paginated %}
+                <div class="right">
+                {% paginate %}
+                </div>
+            {% endif %}
 
     {% else %}
         В базе нет записей
