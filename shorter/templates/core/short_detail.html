@@ -2,8 +2,13 @@
 
 {% block content %}
     <p>
-        Ссылка на <a href="{{ short.full_uri }}">{{ short.full_uri }}</a> доступна по адресу
-        <a href="http://localhost:8000/{{ short.short_urn }}">http://localhost:8000/{{ short.short_urn }}</a>
+        Теперь <a href="{% url "go" short.short_urn %}">http://localhost:8000/{{ short.short_urn }}</a> ведет на <br>
+        <a href="{{ short.full_uri }}">{{ short.full_uri }}</a>.
+
     </p>
-    <p>Количество переходов по ссылке: {{ short.conversions }}</p>
+   {% if short.conversions > 0 %}
+       <p>Количество переходов по ссылке: {{ short.conversions }}</p>
+   {%  else %}
+       <p>Еще никто не переходил по этой ссылке! Необходимо строчно <a href="{% url "go" short.short_urn %}">исправить ситуацию</a>.</p>
+   {% endif %}
 {% endblock %}

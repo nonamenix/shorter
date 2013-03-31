@@ -2,12 +2,78 @@
 <html>
 <head>
     <title>Shorter</title>
+    <link rel="stylesheet" href="/static/css/normalize.css">
+    <link rel="stylesheet" href="/static/css/foundation.min.css">
 </head>
 <body>
-    <a href="/"><h1>Shorter</h1></a>
-    <p>
-        <a href="{% url "add_short" %}">Добавить новую ссылку</a>
-    </p>
-    {% block content %}{% endblock %}
+<!-- Header and Nav -->
+
+{#<p>#}
+{#    <a href="{% url "add_short" %}">Добавить новую ссылку</a>#}
+{#</p>#}
+{#{% block content %}{% endblock %}#}
+
+<div class="row">
+    <div class="large-12 columns">
+        <div class="panel">
+            <h1>Shorter</h1>
+        </div>
+    </div>
+</div>
+
+<!-- End Header and Nav -->
+
+
+
+<div class="row">
+    <!-- Nav Sidebar -->
+    <!-- This is source ordered to be pulled to the left on larger screens -->
+    <div class="large-3 columns ">
+        <div class="panel">
+            <div class="section-container vertical-nav" data-section data-options="deep_linking: false; one_up: true">
+                <section class="section">
+                    <h5 class="title"><a href="/">Последнее</a></h5>
+                </section>
+                <section class="section">
+                    <h5 class="title"><a href="{% url "add_short" %}">Добавить ссылку</a></h5>
+                </section>
+                <section class="section">
+                    <h5 class="title"><a href="#">ТОП 10</a></h5>
+                </section>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Feed -->
+    <!-- This has been source ordered to come first in the markup (and on small devices) but to be to the right of the nav on larger screens -->
+    <div class="large-9 columns">
+        {% block content %}
+        
+        {% endblock %}
+    </div>
+</div>
+
+
+<!-- Footer -->
+
+<footer class="row">
+    <div class="large-12 columns">
+        <hr />
+        <div class="row">
+            <div class="large-5 columns">
+                <p>&copy; Copyright no one at all. Go to town.</p>
+            </div>
+            <div class="large-7 columns">
+                <ul class="inline-list right">
+                    <li><a href="#">Последнее</a></li>
+                    <li><a href="#">Добавить ссылку</a></li>
+                    <li><a href="#">ТОП 10</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
 </body>
 </html>

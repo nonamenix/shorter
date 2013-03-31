@@ -1,17 +1,34 @@
 {% extends "base.html" %}
+<!-- Feed Entry -->
 
+<!-- End Feed Entry -->
+
+<hr />
 {% block content %}
     {% if shorts|length > 0 %}
-        <ol>
         {% for short in shorts %}
-            <li>
-                <a href="/success/{{ short.short_urn }}">{{ short.short_urn }}</a>
-                >>>
-                <a href="{{ short.full_uri }}">{{ short.full_uri }}</a>
-                ({{ short.conversions }})
-            </li>
+            <div class="row">
+                <div class="large-2 columns small-3">
+                    <a href="{% url 'success' short.short_urn %}">
+                        <img src="http://placehold.it/80x80&text=[img]" />
+                    </a>
+                </div>
+                <div class="large-10 columns">
+                    <p>
+                        <strong>Здесь будет заголовок страницы:</strong>
+                        А здесь можно вывести короткое описание страницы
+                        Bacon ipsum dolor sit amet nulla ham qui sint exercitation eiusmod commodo, chuck duis velit ...
+                    </p>
+                    <p>Количество посещений: {{ short.conversions }}</p>
+                    <p>Время создания: {{ short.created_at }}</p>
+                    <ul class="inline-list">
+                        <li><a href="{% url "go" short.short_urn %}">Go</a></li>
+                        <li><a href="http://vkontakte.ru/share.php?url=http://localhost:8000{% url 'success' short.short_urn %}">VK Share</a></li>
+                    </ul>
+                </div>
+            </div>
+            <hr>
         {% endfor %}
-        </ol>
     {% else %}
         В базе нет записей
     {% endif %}
