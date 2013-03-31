@@ -90,7 +90,6 @@ ROOT_URLCONF = 'shorter.urls'
 WSGI_APPLICATION = 'shorter.wsgi.application'
 
 
-
 INSTALLED_APPS = (
     'django.contrib.auth',
     'django.contrib.contenttypes',
