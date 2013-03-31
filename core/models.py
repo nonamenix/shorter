@@ -15,10 +15,10 @@ def generateURN():
     return "".join([chars[int(random.random() * len(chars))] for i in range(8)])
 
 class Short(models.Model):
-    full_uri = models.URLField(help_text=u"Укажите ссылку, на которую хотите сделать short")
-    short_urn = models.SlugField(default=generateURN, help_text=u"Короткая ссылка")
-    created_at = models.DateTimeField(default=datetime.datetime.now, help_text=u"Время создания")
-    conversions = models.IntegerField(default=0, help_text=u"Количество переходов")
+    full_uri = models.URLField(help_text=u"Укажите ссылку, на которую хотите сделать short", verbose_name=u"Ссылка")
+    short_urn = models.SlugField(unique=True, default=generateURN, help_text=u"Короткая ссылка", verbose_name=u"Короткая ссылка")
+    created_at = models.DateTimeField(default=datetime.datetime.now, help_text=u"Время создания", editable=False)
+    conversions = models.IntegerField(default=0, help_text=u"Количество переходов", editable=False)
 
     class Meta:
         ordering = ('-created_at',)
@@ -26,3 +26,6 @@ class Short(models.Model):
     def increase_conversions(self):
         self.conversions += 1
         self.save()
+
+    def get_absolute_url(self):
+        return self.short_urn

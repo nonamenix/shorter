@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <p>
+        Ссылка на <a href="{{ short.full_uri }}">{{ short.full_uri }}</a> доступна по адресу
+        <a href="http://localhost:8000/{{ short.short_urn }}">http://localhost:8000/{{ short.short_urn }}</a>
+    </p>
+    <p>Количество переходов по ссылке: {{ short.conversions }}</p>
+{% endblock %}

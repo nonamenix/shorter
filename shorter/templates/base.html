@@ -4,7 +4,10 @@
     <title>Shorter</title>
 </head>
 <body>
-<h1>Shorter</h1>
-{% block content %}{% endblock %}
+    <a href="/"><h1>Shorter</h1></a>
+    <p>
+        <a href="{% url "add_short" %}">Добавить новую ссылку</a>
+    </p>
+    {% block content %}{% endblock %}
 </body>
 </html>
