@@ -22,3 +22,7 @@ class Short(models.Model):
 
     class Meta:
         ordering = ('-created_at',)
+
+    def increase_conversions(self):
+        self.conversions += 1
+        self.save()
