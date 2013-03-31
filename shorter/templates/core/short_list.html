@@ -1,10 +1,11 @@
 {% extends "base.html" %}
+{% load pagination_tags %}
 <!-- Feed Entry -->
 
 <!-- End Feed Entry -->
 
-<hr />
 {% block content %}
+    <h3>Новинки</h3>
     {% if shorts|length > 0 %}
         {% for short in shorts %}
             <div class="row">
@@ -29,6 +30,13 @@
             </div>
             <hr>
         {% endfor %}
+
+
+
+        {% if is_paginated %}
+            {% paginate %}
+        {% endif %}
+
     {% else %}
         В базе нет записей
     {% endif %}

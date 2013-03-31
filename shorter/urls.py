@@ -10,10 +10,14 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
+
     url(r'^add.html', CreateShortView.as_view(model=Short), name="add_short"),
+
     url(r'^success/(?P<slug>.*)$', DetailView.as_view(slug_field="short_urn",
         model=Short, context_object_name="short"), name='success'),
-    url(r'^$', ListView.as_view(model=Short, context_object_name="shorts")),
+
+    url(r'^$', ListView.as_view(model=Short, context_object_name="shorts", paginate_by=10)),
+
     url(r'^(?P<short_urn>.*)$', ShortRedirectView.as_view(), name='go'),
 
 
