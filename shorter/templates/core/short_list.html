@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block content %}
+    {% if shorts|length > 0 %}
+        <ol>
+        {% for short in shorts %}
+            <li><a href="{{ short.short_urn }}">{{ short.short_urn }}</a> : <a href="{{ short.full_uri }}">{{ short.full_uri }}</a></li>
+        {% endfor %}
+        </ol>
+    {% else %}
+        В базе нет записей
+    {% endif %}
+{% endblock %}
